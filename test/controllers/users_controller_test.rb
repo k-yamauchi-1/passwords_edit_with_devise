@@ -62,7 +62,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "can get password edit form when logged in also" do
     login_as(users(:one))
     get edit_user_password_path
-    skip  # when logged in, cannot access but redirect with basic spec of devise
     assert_response :success
   end
 
@@ -86,7 +85,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         password: "changed_pw", password_confirmation: "changed_pw"
       } }
     end
-    skip  # fail to update as expected, but the response is not unprocessable_entity with basic spec of devise
     assert_response :unprocessable_entity
   end
 
@@ -101,7 +99,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         current_password: "paswd", password: "changed_pw", password_confirmation: "changed_pw"
       } }
     end
-    skip  # fail to update as expected, but the response is not unprocessable_entity with basic spec of devise
     assert_response :unprocessable_entity
   end
 
@@ -116,7 +113,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         current_password: "passwd", password: "changed_pw", password_confirmation: 'changed_psw'
       } }
     end
-    skip  # fail to update as expected, but the response is not unprocessable_entity with basic spec of devise
     assert_response :unprocessable_entity
   end
 
@@ -145,7 +141,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post user_session_path, params: { user: {
       email: "em@i.l", password: "changed_pw"
     } }
-    skip  # at this stage, user_password_path(ll.131-134) accepts only password reset so failed to change passwd when logged in
     assert_redirected_to root_path
   end
 

@@ -1,8 +1,15 @@
 <h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_with model: resource, url: password_path(resource_name), html: { method: :put }, local: true do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <% if user_signed_in? %>
+    <div class="field">
+      <%= f.label :current_password, "Current password" %><br />
+      <%= f.password_field :current_password, autofocus: true, autocomplete: "password" %>
+    </div>
+  <% else %>
+    <%= f.hidden_field :reset_password_token %>
+  <% end %>
 
   <div class="field">
     <%= f.label :password, "New password" %><br />
