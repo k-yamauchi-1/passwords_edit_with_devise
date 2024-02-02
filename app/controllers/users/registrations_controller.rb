@@ -16,4 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :account_update, keys: [:name, :job, :hobby]
       )
     end
+
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
 end

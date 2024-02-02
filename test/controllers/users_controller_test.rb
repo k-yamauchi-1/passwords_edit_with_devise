@@ -45,7 +45,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     actual = User.find(@user.id)
-    skip  # at this stage, password required to edit so fail below
     assert_equal "edited_name", actual.name
   end
 
